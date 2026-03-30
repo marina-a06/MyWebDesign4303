@@ -1,0 +1,38 @@
+body {
+    background-color: #b9ac78;
+}
+h1 { color: #e1dfd2; font-size: 40pt; text-align: center;}
+h2 {font-size: 20pt; text-align: center; color: #857440}
+p { color: #37541e; font-size: 20pt; text-align: center; padding-inline: 2em; background-color: #e1dfd2;}
+h3 {color:#37541e; text-align: center}
+a { color: #357413; font-size: 15pt; display: flex;}
+
+h4 {font-size: 12pt; color: #857440;}2
+ul {font-size: 12pt; color: #857440;}
+.gallery {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photo-card {
+  text-align: center;
+  max-width: 300px;
+}
+
+.photo-card img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.photo-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+
+
+body { font-family:'Times New Roman', Times, serif }
