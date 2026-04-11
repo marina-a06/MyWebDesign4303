@@ -1,13 +1,13 @@
 body {
-    background-color: red !important;
+    background-color: whitesmoke;
 }
 body {
   background-color: #f3f4f6;
   font-family: Arial, sans-serif;
 }
-h1 { color: #e1dfd2; font-size: 40pt; text-align: center;}
+h1 { color: #5535e6; font-size: 40pt; text-align: center;}
 h2 {font-size: 20pt; text-align: center; color: #857440}
-p { color: #37541e; font-size: 20pt; text-align: center; padding-inline: 2em; background-color: #e1dfd2;}
+p { color: #351c70; font-size: 20pt; text-align: center; padding-inline: 2em; background-color: #e1dfd2;}
 h3 {color:#37541e; text-align: center}
 a { color: #357413; font-size: 15pt; display: flex;}
 

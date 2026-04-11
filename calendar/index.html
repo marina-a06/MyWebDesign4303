@@ -17,40 +17,34 @@
 
   <div class="app">
 
-    <!-- Sidebar -->
     <div class="sidebar">
-      <h2>My Calendar</h2>
+      <h2>Our Calendar</h2>
       <button id="clearEvents">Clear Events</button>
     </div>
 
-    <!-- Main Content -->
     <div class="main">
 
-      <!-- Header -->
       <div class="header">
-        <h1>Dashboard</h1>
+        <h1>Family Calendar</h1>
       </div>
 
-      <!-- Calendar -->
+      
       <div id="calendar"></div>
 
     </div>
 
   </div>
 
-  <!-- FullCalendar JS -->
+  
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
-  <!-- Your calendar script -->
   
-
   
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
   const calendarEl = document.getElementById('calendar');
 
-  // Load saved events
   const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
