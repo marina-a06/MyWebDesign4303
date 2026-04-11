@@ -78,3 +78,67 @@ body {
   margin: 50px auto;
 }
 
+/* Layout */
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Main section */
+.main {
+  flex: 1;
+  background-color: #f3f4f6;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  margin-bottom: 20px;
+}
+
+/* Calendar styling */
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* FullCalendar overrides */
+.fc {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.fc-toolbar-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.fc-event {
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+}
