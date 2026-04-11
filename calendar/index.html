@@ -5,43 +5,55 @@
   <meta charset="UTF-8">
   <title>Calendar</title>
 
-  <!-- FullCalendar CSS -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- Calendar container -->
+  
   <div id="calendar"></div>
 
-  <!-- FullCalendar JS -->
+
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
   
-dateClick: function(info) {
-  let title = prompt("Enter event name:");
-
-  if (title) {
-    calendar.addEvent({
-      title: title,
-      start: info.dateStr,
-      allDay: true
-    });
-  }
-}
-
 
 <a href="../index.html">Back to Homepage</a>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
+document.addEventListener('DOMContentLoaded', function () {
+  var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth'
-    });
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
 
-    calendar.render();
+    editable: true,
+    selectable: true,
+
+    dateClick: function(info) {
+      let title = prompt("Enter event name:");
+
+      if (title) {
+        calendar.addEvent({
+          title: title,
+          start: info.dateStr,
+          allDay: true
+        });
+      }
+    },
+
+    eventClick: function(info) {
+      let newTitle = prompt("Edit event name:", info.event.title);
+
+      if (newTitle === "") {
+        info.event.remove();
+      } else if (newTitle) {
+        info.event.setProp('title', newTitle);
+      }
+    }
   });
+
+  calendar.render();
+});
 </script>
 </body>
 </html>
