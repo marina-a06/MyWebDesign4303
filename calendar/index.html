@@ -18,7 +18,17 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
   
+dateClick: function(info) {
+  let title = prompt("Enter event name:");
 
+  if (title) {
+    calendar.addEvent({
+      title: title,
+      start: info.dateStr,
+      allDay: true
+    });
+  }
+}
 
 
 <a href="../index.html">Back to Homepage</a>
