@@ -7,7 +7,8 @@ p { color: #37541e; font-size: 20pt; text-align: center; padding-inline: 2em; ba
 h3 {color:#37541e; text-align: center}
 a { color: #357413; font-size: 15pt; display: flex;}
 
-h4 {font-size: 12pt; color: #857440;}2
+h4 {font-size: 12pt; color: #857440;}
+
 ul {font-size: 12pt; color: #857440;}
 .gallery {
   display: flex;
@@ -36,3 +37,40 @@ ul {font-size: 12pt; color: #857440;}
 
 
 body { font-family:'Times New Roman', Times, serif }
+
+#calendar {
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+/* Change header (month/title area) */
+.fc-toolbar-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Style the calendar box */
+.fc {
+  background-color: #f9fafb;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Style events */
+.fc-event {
+  border: none;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+#calendar {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
