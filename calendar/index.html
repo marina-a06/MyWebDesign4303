@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="../style.css">
 
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -46,16 +47,20 @@
   
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  var calendarEl = document.getElementById('calendar');
 
-  var calendar = new FullCalendar.Calendar(calendarEl, {
+  const calendarEl = document.getElementById('calendar');
+
+  // Load saved events
+  const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-
     editable: true,
     selectable: true,
+    events: savedEvents,
 
     dateClick: function(info) {
-      let title = prompt("Enter event name:");
+      const title = prompt("Enter event name:");
 
       if (title) {
         calendar.addEvent({
@@ -63,27 +68,51 @@ document.addEventListener('DOMContentLoaded', function () {
           start: info.dateStr,
           allDay: true
         });
+
+        saveEvents();
       }
     },
 
     eventClick: function(info) {
-      let newTitle = prompt("Edit event name:", info.event.title);
+      const newTitle = prompt("Edit event name:", info.event.title);
 
       if (newTitle === "") {
         info.event.remove();
       } else if (newTitle) {
         info.event.setProp('title', newTitle);
       }
+
+      saveEvents();
+    },
+
+    eventChange: function() {
+      saveEvents();
     }
   });
 
   calendar.render();
-  document.getElementById('clearEvents').addEventListener('click', function () {
-  if (confirm("Delete all events?")) {
-    localStorage.removeItem('events');
-    calendar.removeAllEvents();
+
+  function saveEvents() {
+    const events = calendar.getEvents().map(event => ({
+      title: event.title,
+      start: event.start,
+      end: event.end,
+      allDay: event.allDay
+    }));
+
+    localStorage.setItem('events', JSON.stringify(events));
   }
-});
+
+  const clearBtn = document.getElementById('clearEvents');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      if (confirm("Delete all events?")) {
+        localStorage.removeItem('events');
+        calendar.removeAllEvents();
+      }
+    });
+  }
+
 });
 </script>
 
