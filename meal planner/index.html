@@ -16,41 +16,42 @@
 <div class="container">
   <h1>Meal Planner</h1>
 
- <div class="day">Monday: <input type="text" id="Monday"></div>
-<div class="day">Tuesday: <input type="text" id="Tuesday"></div>
-<div class="day">Wednesday: <input type="text" id="Wednesday"></div>
-<div class="day">Thursday: <input type="text" id="Thursday"></div>
-<div class="day">Friday: <input type="text" id="Friday"></div>
-<div class="day">Saturday: <input type="text" id="Saturday"></div>
-<div class="day">Sunday: <input type="text" id="Sunday"></div>
+  <div class="day">Monday: <input type="text" id="monday"></div>
+<div class="day">Tuesday: <input type="text" id="tuesday"></div>
+<div class="day">Wednesday: <input type="text" id="wednesday"></div>
+<div class="day">Thursday: <input type="text" id="thursday"></div>
+<div class="day">Friday: <input type="text" id="friday"></div>
+<div class="day">Saturday: <input type="text" id="saturday"></div>
+<div class="day">Sunday: <input type="text" id="sunday"></div>
 
 </div>
 
 <script>
-const days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
+
+function loadMeals() {
+  let savedMeals = JSON.parse(localStorage.getItem("meals")) || {};
+
+  days.forEach(day => {
+    if (savedMeals[day]) {
+      document.getElementById(day).value = savedMeals[day];
+    }
+  });
+}
 
 function saveMeals() {
   let meals = {};
 
   days.forEach(day => {
-    const input = document.getElementById(day);
-    meals[day] = input.value;
+    meals[day] = document.getElementById(day).value;
   });
 
   localStorage.setItem("meals", JSON.stringify(meals));
 }
 
-function loadMeals() {
-  const savedMeals = JSON.parse(localStorage.getItem("meals")) || {};
-
-  days.forEach(day => {
-    const input = document.getElementById(day);
-    if (savedMeals[day]) {
-      input.value = savedMeals[day];
-    }
-  });
-}
-
+days.forEach(day => {
+  document.getElementById(day).addEventListener("input", saveMeals);
+});
 
 loadMeals();
 </script>
