@@ -9,8 +9,8 @@
 
 <nav>
   <a href="calendar/index.html">Calendar</a>
-  <a href="to-do list/index.html">To-Do</a>
-  <a href="meal planner/index.html">Meals</a>
+  <a href="to-do list/index.html">To Do List</a>
+  <a href="meal planner/index.html">Meal Planner</a>
 </nav>
 
 <div class="container">
@@ -25,27 +25,44 @@
 </div>
 
 <script>
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function renderTasks() {
+  const list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <input type="checkbox" ${task.completed ? "checked" : ""} onclick="toggleTask(${index})">
+      <span class="${task.completed ? "completed" : ""}">${task.text}</span>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
 function addTask() {
-  let input = document.getElementById("taskInput");
-  let taskText = input.value;
+  const input = document.getElementById("taskInput");
+  const text = input.value;
 
-  if (taskText === "") return;
+  if (text === "") return;
 
-  let li = document.createElement("li");
+  tasks.push({ text: text, completed: false });
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 
-  li.innerHTML = `
-    <input type="checkbox" onclick="toggleTask(this)">
-    ${taskText}
-  `;
-
-  document.getElementById("taskList").appendChild(li);
   input.value = "";
+  renderTasks();
 }
 
-function toggleTask(checkbox) {
-  let li = checkbox.parentElement;
-  li.classList.toggle("completed");
+function toggleTask(index) {
+  tasks[index].completed = !tasks[index].completed;
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
 }
+
+renderTasks();
 </script>
 <a href="../index.html">Back to Homepage</a>
 </body>

@@ -8,22 +8,52 @@
 <body>
 
 <nav>
-  <a href="index.html">Calendar</a>
-  <a href="todo.html">To-Do</a>
-  <a href="meals.html">Meals</a>
+  <a href="calendar/index.html">Calendar</a>
+  <a href="to-do list/index.html">To Do List</a>
+  <a href="meal planner/index.html">Meal Planner</a>  
 </nav>
 
 <div class="container">
   <h1>Meal Planner</h1>
 
-  <div class="day">Monday: <input type="text"></div>
-  <div class="day">Tuesday: <input type="text"></div>
-  <div class="day">Wednesday: <input type="text"></div>
-  <div class="day">Thursday: <input type="text"></div>
-  <div class="day">Friday: <input type="text"></div>
-  <div class="day">Saturday: <input type="text"></div>
-  <div class="day">Sunday: <input type="text"></div>
+ <div class="day">Monday: <input type="text" id="Monday"></div>
+<div class="day">Tuesday: <input type="text" id="Tuesday"></div>
+<div class="day">Wednesday: <input type="text" id="Wednesday"></div>
+<div class="day">Thursday: <input type="text" id="Thursday"></div>
+<div class="day">Friday: <input type="text" id="Friday"></div>
+<div class="day">Saturday: <input type="text" id="Saturday"></div>
+<div class="day">Sunday: <input type="text" id="Sunday"></div>
+
 </div>
+
+<script>
+const days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+function saveMeals() {
+  let meals = {};
+
+  days.forEach(day => {
+    const input = document.getElementById(day);
+    meals[day] = input.value;
+  });
+
+  localStorage.setItem("meals", JSON.stringify(meals));
+}
+
+function loadMeals() {
+  const savedMeals = JSON.parse(localStorage.getItem("meals")) || {};
+
+  days.forEach(day => {
+    const input = document.getElementById(day);
+    if (savedMeals[day]) {
+      input.value = savedMeals[day];
+    }
+  });
+}
+
+
+loadMeals();
+</script>
 <a href="../index.html">Back to Homepage</a>
 </body>
 </html>
