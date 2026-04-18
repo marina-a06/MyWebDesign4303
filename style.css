@@ -19,15 +19,12 @@ header {
   padding: 60px 20px;
 }
 
-.hero h1 {
-  font-size: 36px;
-  color: #4f46e5;
-}
+
 
 .hero p {
   max-width: 500px;
   margin: 20px auto;
-  color: #555;
+  color: #5535e6;
 }
 .features {
   display: flex;
@@ -38,6 +35,7 @@ header {
 }
 .tagline {
   font-style: italic;
+  font-weight: bold;
   color: #6b7280;
   margin-top: 10px;
 }
