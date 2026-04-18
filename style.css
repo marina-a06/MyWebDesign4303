@@ -36,6 +36,11 @@ header {
   padding: 40px;
   flex-wrap: wrap;
 }
+.tagline {
+  font-style: italic;
+  color: #6b7280;
+  margin-top: 10px;
+}
 /* ===== NAVIGATION ===== */
 nav {
   text-align: center;
