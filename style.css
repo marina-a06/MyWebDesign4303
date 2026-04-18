@@ -14,7 +14,28 @@ header {
   text-align: center;
   padding: 15px;
 }
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
 
+.hero h1 {
+  font-size: 36px;
+  color: #4f46e5;
+}
+
+.hero p {
+  max-width: 500px;
+  margin: 20px auto;
+  color: #555;
+}
+.features {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px;
+  flex-wrap: wrap;
+}
 /* ===== NAVIGATION ===== */
 nav {
   text-align: center;
