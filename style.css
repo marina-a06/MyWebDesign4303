@@ -7,7 +7,7 @@ body {
 nav a:hover {
   color: #ef4444;
 }
-/* ===== HEADER ===== */
+
 header {
   background: #5535e6;
   color: white;
@@ -39,7 +39,7 @@ header {
   color: #6b7280;
   margin-top: 10px;
 }
-/* ===== NAVIGATION ===== */
+
 nav {
   text-align: center;
   background: white;
@@ -54,7 +54,7 @@ nav a {
   font-weight: bold;
 }
 
-/* ===== MAIN CONTAINER ===== */
+
 .container {
   max-width: 1200px;
   margin: 20px auto;
@@ -63,7 +63,7 @@ nav a {
   border-radius: 10px;
 }
 
-/* ===== HEADINGS ===== */
+
 h1 {
   text-align: center;
 }
@@ -73,7 +73,7 @@ h2 {
   color: #666;
 }
 
-/* ===== INPUTS + BUTTONS ===== */
+
 input {
   padding: 8px;
   border: 1px solid #ccc;
@@ -89,7 +89,21 @@ button {
   cursor: pointer;
 }
 
-/* ===== TO-DO LIST ===== */
+.card {
+  display: block;             
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;       
+  text-decoration: none;       
+  color: inherit;             
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 0 3px #5535e6;
+  transform: translateY(-4px); 
+}
+
 .input-section {
   display: flex;
   gap: 10px;
@@ -107,14 +121,14 @@ li {
   color: gray;
 }
 
-/* ===== MEAL PLANNER ===== */
+
 .day {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-/* ===== CALENDAR ===== */
+
 #calendar {
   max-width: 900px;
   margin: 0 auto;
@@ -138,7 +152,7 @@ li {
   font-size: 12px;
 }
 
-/* ===== MOBILE ===== */
+
 @media (max-width: 768px) {
   nav {
     display: flex;
