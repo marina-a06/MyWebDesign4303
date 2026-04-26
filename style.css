@@ -1,11 +1,11 @@
-/* ===== GLOBAL STYLES ===== */
+
 body {
   font-family: Arial, sans-serif;
   background: #f3f4f6;
   margin: 0;
 }
 nav a:hover {
-  color: #ef4444;
+  color: black;
 }
 
 header {
