@@ -119,15 +119,109 @@ document.addEventListener('DOMContentLoaded', function () {
 let activitiesByDate = JSON.parse(localStorage.getItem("activitiesByDate")) || {};
 let selectedDate = null;
 
+document.addEventListener('DOMContentLoaded', function () {
+  const calendarEl = document.getElementById('calendar');
+
+  const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    editable: true,
+    selectable: true,
+    events: savedEvents,
+
+    dateClick: function(info) {
+      selectedDate = info.dateStr;
+
+      document.getElementById("selectedDate").innerText =
+        "Selected Date: " + selectedDate;
+
+      renderActivities();
+
+      const title = prompt("Enter event name:");
+
+      if (title) {
+        calendar.addEvent({
+          title: title,
+          start: info.dateStr,
+          allDay: true
+        });
+
+        saveEvents();
+      }
+    },
+
+    eventClick: function(info) {
+      const newTitle = prompt("Edit event name:", info.event.title);
+
+      if (newTitle === "") {
+        info.event.remove();
+      } else if (newTitle) {
+        info.event.setProp('title', newTitle);
+      }
+
+      saveEvents();
+    },
+
+    eventChange: function() {
+      saveEvents();
+    }
+  });
+
+  calendar.render();
+
+  function saveEvents() {
+    const events = calendar.getEvents().map(event => ({
+      title: event.title,
+      start: event.start,
+      end: event.end,
+      allDay: event.allDay
+    }));
+
+    localStorage.setItem('events', JSON.stringify(events));
+  }
+});
+
+function addActivity() {
+  if (!selectedDate) {
+    alert("Please select a date first!");
+    return;
+  }
+
+  const input = document.getElementById("activityInput");
+
+  if (input.value.trim() === "") return;
+
+  if (!activitiesByDate[selectedDate]) {
+    activitiesByDate[selectedDate] = [];
+  }
+
+  activitiesByDate[selectedDate].push({
+    text: input.value,
+    done: false
+  });
+
+  localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
+
+  input.value = "";
+  renderActivities();
+}
+
 function renderActivities() {
   const list = document.getElementById("activityList");
   list.innerHTML = "";
 
-  activities.forEach((activity, index) => {
+  if (!selectedDate || !activitiesByDate[selectedDate]) return;
+
+  activitiesByDate[selectedDate].forEach((activity, index) => {
     const li = document.createElement("li");
 
     li.innerHTML = `
-      <span>${activity}</span>
+      <label>
+        <input type="checkbox" ${activity.done ? "checked" : ""}
+          onchange="toggleActivity(${index})">
+        ${activity.text}
+      </label>
       <button onclick="deleteActivity(${index})">❌</button>
     `;
 
@@ -135,25 +229,19 @@ function renderActivities() {
   });
 }
 
-function addActivity() {
-  const input = document.getElementById("activityInput");
+function toggleActivity(index) {
+  activitiesByDate[selectedDate][index].done =
+    !activitiesByDate[selectedDate][index].done;
 
-  if (input.value.trim() === "") return;
-
-  activities.push(input.value);
-  localStorage.setItem("activities", JSON.stringify(activities));
-
-  input.value = "";
-  renderActivities();
+  localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
 }
 
 function deleteActivity(index) {
-  activities.splice(index, 1);
-  localStorage.setItem("activities", JSON.stringify(activities));
+  activitiesByDate[selectedDate].splice(index, 1);
+
+  localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
   renderActivities();
 }
-
-renderActivities();
 </script>
 
 <section class="activity-tracker">
@@ -165,8 +253,6 @@ renderActivities();
   </div>
 
   <ul id="activityList"></ul>
-
-  activities.push({ text: input.value, done: false });
 </section>
 
 </body>
