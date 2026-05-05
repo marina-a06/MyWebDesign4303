@@ -41,7 +41,7 @@
     </div>
 
   </div>
-
+<h3 id="selectedDate">Selected Date: None</h3>
   
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
@@ -116,7 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-let activities = JSON.parse(localStorage.getItem("activities")) || [];
+let activitiesByDate = JSON.parse(localStorage.getItem("activitiesByDate")) || {};
+let selectedDate = null;
 
 function renderActivities() {
   const list = document.getElementById("activityList");
