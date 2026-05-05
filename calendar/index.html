@@ -115,8 +115,58 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+let activities = JSON.parse(localStorage.getItem("activities")) || [];
+
+function renderActivities() {
+  const list = document.getElementById("activityList");
+  list.innerHTML = "";
+
+  activities.forEach((activity, index) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <span>${activity}</span>
+      <button onclick="deleteActivity(${index})">❌</button>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
+function addActivity() {
+  const input = document.getElementById("activityInput");
+
+  if (input.value.trim() === "") return;
+
+  activities.push(input.value);
+  localStorage.setItem("activities", JSON.stringify(activities));
+
+  input.value = "";
+  renderActivities();
+}
+
+function deleteActivity(index) {
+  activities.splice(index, 1);
+  localStorage.setItem("activities", JSON.stringify(activities));
+  renderActivities();
+}
+
+renderActivities();
 </script>
 
+<section class="activity-tracker">
+  <h2>⭐ Kid Activity Tracker</h2>
+
+  <div class="tracker-input">
+    <input type="text" id="activityInput" placeholder="Add activity (e.g., Read 20 mins)">
+    <button onclick="addActivity()">Add</button>
+  </div>
+
+  <ul id="activityList"></ul>
+
+  activities.push({ text: input.value, done: false });
+</section>
 
 </body>
 </html>

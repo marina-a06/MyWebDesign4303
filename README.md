@@ -10,7 +10,6 @@ This web app will help busy parents manage everything in one place.
 * To-Do Lists
 * Meal Planner + Grocery list generator
 * Kid Activity Tracker
-* Budget Tracker
 
 
 ## What is this?
@@ -31,3 +30,5 @@ This project was built using:
 ## How to visit it
 You can view the live version of the project here:  
 [Click here to view the Mom Life Command Center](https://marina-a06.github.io/MyWebDesign4303/)
+
+## What changed from Project 01 to Project 02?
