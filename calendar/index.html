@@ -116,15 +116,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-let activitiesByDate = JSON.parse(localStorage.getItem("activitiesByDate")) || {};
-let selectedDate = null;
+const activityText = input.value;
+
+activitiesByDate[selectedDate].push({
+  text: activityText,
+  done: false
+});
+
+// ⭐ ALSO ADD TO CALENDAR
+const calendar = FullCalendar.getCalendarInstance
+  ? FullCalendar.getCalendarInstance()
+  : window.calendar;
+
+if (calendar) {
+  calendar.addEvent({
+    title: "⭐ " + activityText,
+    start: selectedDate,
+    allDay: true,
+    color: "#4CAF50" // green so it stands out
+  });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar');
 
   const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
 
-  const calendar = new FullCalendar.Calendar(calendarEl, {
+  window.calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     editable: true,
     selectable: true,
