@@ -195,7 +195,7 @@ backgroundColor: {
 
   localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
 
-  // 🎨 color map
+
   const colorMap = {
     kid: "#4CAF50",
     mom: "#2196F3",
@@ -221,7 +221,6 @@ backgroundColor: {
     dad: document.getElementById("dadList")
   };
 
-  // clear all lists
   Object.values(lists).forEach(list => list.innerHTML = "");
 
   if (!selectedDate || !activitiesByDate[selectedDate]) return;
@@ -278,6 +277,30 @@ function getIcon(type) {
     dad: "💜"
   }[type];
 }
+clearBtn.addEventListener('click', function () {
+  if (confirm("Delete ALL events and activities?")) {
+
+
+    localStorage.removeItem('events');
+    localStorage.removeItem('activitiesByDate');
+
+
+    calendar.removeAllEvents();
+
+  
+    activitiesByDate = {};
+    selectedDate = null;
+
+    document.getElementById("selectedDate").innerText = "Selected Date: None";
+
+  
+    ["kidList", "momList", "dadList"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = "";
+    });
+  }
+});
+
 </script>
 
 
