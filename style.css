@@ -149,20 +149,7 @@ li {
 }
 
 
-@media (max-width: 768px) {
-  nav {
-    display: flex;
-    justify-content: space-around;
-  }
 
-  .container {
-    margin: 10px;
-  }
-
-  button {
-    padding: 12px;
-  }
-}
 
 .activity-tracker {
   margin-top: 30px;
@@ -199,4 +186,35 @@ li {
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+}
+
+.app {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 300px;
+  background: #f4f8ff;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.main {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .container {
+    margin: 10px;
+  }
+
+  button {
+    padding: 12px;
+  }
 }

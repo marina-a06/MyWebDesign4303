@@ -27,6 +27,17 @@
 
     <div class="sidebar">
       <button id="clearEvents">Clear Events</button>
+      <h3 id="selectedDate">Selected Date: None</h3>
+      <section class="activity-tracker">
+  <h2>⭐ Kid Activity Tracker</h2>
+
+  <div class="tracker-input">
+    <input type="text" id="activityInput" placeholder="Add activity (e.g., Read 20 mins)">
+    <button onclick="addActivity()">Add</button>
+  </div>
+
+  <ul id="activityList"></ul>
+</section>
     </div>
 
     <div class="main">
@@ -41,7 +52,6 @@
     </div>
 
   </div>
-<h3 id="selectedDate">Selected Date: None</h3>
   
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
@@ -55,19 +65,18 @@ document.addEventListener('DOMContentLoaded', function () {
   let activitiesByDate = JSON.parse(localStorage.getItem("activitiesByDate")) || {};
   const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
 
-  // 🔹 Create ONE calendar only
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     editable: true,
     selectable: true,
 
-    // combine saved events + activity events
+  
     events: [
       ...savedEvents,
       ...convertActivitiesToEvents(activitiesByDate)
     ],
 
-    // 🔥 CLICK DATE = connect tracker
+   
     dateClick: function(info) {
       selectedDate = info.dateStr;
 
@@ -96,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
-  // 🔹 Convert activities → calendar events
+  
   function convertActivitiesToEvents(data) {
     const events = [];
 
@@ -114,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return events;
   }
 
-  // 🔹 Save ONLY real events
+ 
   function saveEvents() {
     const events = calendar.getEvents()
       .filter(e => !e.title.startsWith("⭐"))
@@ -128,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('events', JSON.stringify(events));
   }
 
-  // 🔹 ADD ACTIVITY
+  
   window.addActivity = function() {
     if (!selectedDate) {
       alert("Please select a date first!");
@@ -151,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
 
-    // add to calendar
+   
     calendar.addEvent({
       title: "⭐ " + text,
       start: selectedDate,
@@ -163,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderActivities();
   };
 
-  // 🔹 RENDER TRACKER
+  
   function renderActivities() {
     const list = document.getElementById("activityList");
     list.innerHTML = "";
@@ -186,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 🔹 TOGGLE
+ 
   window.toggleActivity = function(index) {
     activitiesByDate[selectedDate][index].done =
       !activitiesByDate[selectedDate][index].done;
@@ -194,13 +203,13 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
   };
 
-  // 🔹 DELETE
+  
   window.deleteActivity = function(index) {
     const removed = activitiesByDate[selectedDate].splice(index, 1)[0];
 
     localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
 
-    // remove from calendar
+   
     calendar.getEvents().forEach(event => {
       if (
         event.title === "⭐ " + removed.text &&
@@ -216,16 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<section class="activity-tracker">
-  <h2>⭐ Kid Activity Tracker</h2>
-
-  <div class="tracker-input">
-    <input type="text" id="activityInput" placeholder="Add activity (e.g., Read 20 mins)">
-    <button onclick="addActivity()">Add</button>
-  </div>
-
-  <ul id="activityList"></ul>
-</section>
 
 </body>
 </html>
