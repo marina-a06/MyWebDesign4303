@@ -21,27 +21,62 @@
 
 
 <div class="container">
-  
+ <div class="container">
 
-  <div class="day">Monday: <input type="text" id="monday"></div>
-<div class="day">Tuesday: <input type="text" id="tuesday"></div>
-<div class="day">Wednesday: <input type="text" id="wednesday"></div>
-<div class="day">Thursday: <input type="text" id="thursday"></div>
-<div class="day">Friday: <input type="text" id="friday"></div>
-<div class="day">Saturday: <input type="text" id="saturday"></div>
-<div class="day">Sunday: <input type="text" id="sunday"></div>
+  <div class="meal-layout">
 
-</div>
+    <!-- MEAL PLANNER -->
+    <div class="meal-section">
+      <h2>Weekly Meal Planner</h2>
 
-<div class="grocery-section">
-    <h2>Grocery List</h2>
+      <div class="day">
+        <label>Monday:</label>
+        <input type="text" id="monday">
+      </div>
 
-    <div class="grocery-input">
-      <input type="text" id="groceryItem" placeholder="Add grocery item">
-      <button id="addItemBtn">Add</button>
+      <div class="day">
+        <label>Tuesday:</label>
+        <input type="text" id="tuesday">
+      </div>
+
+      <div class="day">
+        <label>Wednesday:</label>
+        <input type="text" id="wednesday">
+      </div>
+
+      <div class="day">
+        <label>Thursday:</label>
+        <input type="text" id="thursday">
+      </div>
+
+      <div class="day">
+        <label>Friday:</label>
+        <input type="text" id="friday">
+      </div>
+
+      <div class="day">
+        <label>Saturday:</label>
+        <input type="text" id="saturday">
+      </div>
+
+      <div class="day">
+        <label>Sunday:</label>
+        <input type="text" id="sunday">
+      </div>
     </div>
 
-    <ul id="groceryList"></ul>
+    <!-- GROCERY LIST -->
+    <div class="grocery-section">
+      <h2>Grocery List</h2>
+
+      <div class="grocery-input">
+        <input type="text" id="groceryItem" placeholder="Add grocery item">
+        <button id="addItemBtn">Add</button>
+      </div>
+
+      <ul id="groceryList"></ul>
+    </div>
+
   </div>
 
 </div>
