@@ -33,6 +33,20 @@
 
 </div>
 
+<div class="grocery-section">
+    <h2>Grocery List</h2>
+
+    <div class="grocery-input">
+      <input type="text" id="groceryItem" placeholder="Add grocery item">
+      <button id="addItemBtn">Add</button>
+    </div>
+
+    <ul id="groceryList"></ul>
+  </div>
+
+</div>
+
+
 <script>
 const days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
 
@@ -61,6 +75,61 @@ days.forEach(day => {
 });
 
 loadMeals();
+
+const groceryInput = document.getElementById("groceryItem");
+const addItemBtn = document.getElementById("addItemBtn");
+const groceryList = document.getElementById("groceryList");
+
+let groceries = JSON.parse(localStorage.getItem("groceries")) || [];
+
+function saveGroceries() {
+  localStorage.setItem("groceries", JSON.stringify(groceries));
+}
+
+function renderGroceries() {
+  groceryList.innerHTML = "";
+
+  groceries.forEach((item, index) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+      <span>${item}</span>
+      <button onclick="removeItem(${index})">X</button>
+    `;
+
+    groceryList.appendChild(li);
+  });
+}
+
+function addItem() {
+  const itemText = groceryInput.value.trim();
+
+  if (itemText === "") return;
+
+  groceries.push(itemText);
+
+  saveGroceries();
+  renderGroceries();
+
+  groceryInput.value = "";
+}
+
+function removeItem(index) {
+  groceries.splice(index, 1);
+
+  saveGroceries();
+  renderGroceries();
+}
+
+addItemBtn.addEventListener("click", addItem);
+
+groceryInput.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    addItem();
+  }
+});
+
+renderGroceries();
 </script>
 
 </body>

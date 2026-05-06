@@ -213,6 +213,63 @@ li {
   border-radius: 10px;
 }
 
+.day {
+  margin-bottom: 15px;
+}
+
+.day input {
+  padding: 8px;
+  width: 250px;
+}
+
+.grocery-section {
+  margin-top: 40px;
+}
+
+.grocery-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.grocery-input input {
+  padding: 10px;
+  width: 250px;
+}
+
+.grocery-input button {
+  padding: 10px 15px;
+  background: #5535e6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#groceryList {
+  list-style: none;
+  padding: 0;
+}
+
+#groceryList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+#groceryList button {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   nav {
     display: flex;
