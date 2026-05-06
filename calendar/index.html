@@ -77,6 +77,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
+  
   const calendarEl = document.getElementById('calendar');
 
   let selectedDate = null;
@@ -123,7 +124,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
+    const clearBtn = document.getElementById('clearEvents');
+
+clearBtn.addEventListener('click', function () {
+  if (confirm("Delete ALL events and activities?")) {
+
+    localStorage.removeItem('events');
+    localStorage.removeItem('activitiesByDate');
   
+    calendar.removeAllEvents();
+
+    activitiesByDate = {};
+    selectedDate = null;
+
+    document.getElementById("selectedDate").innerText = "Selected Date: None";
+
+    ["kidList", "momList", "dadList"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = "";
+    });
+  }
+}); 
+
   function convertActivitiesToEvents(data) {
     const events = [];
 
@@ -131,14 +153,13 @@ document.addEventListener('DOMContentLoaded', function () {
       data[date].forEach(activity => {
         events.push({
           title: getIcon(activity.type) + " " + activity.text,
-backgroundColor: {
-  kid: "#4CAF50",
-  mom: "#2196F3",
-  dad: "#9C27B0"
-}[activity.type],
           start: date,
           allDay: true,
-          backgroundColor: "#4CAF50"
+          backgroundColor: {
+            kid: "#4CAF50",
+            mom: "#2196F3",
+            dad: "#9C27B0"
+          }[activity.type],
         });
       });
     });
@@ -274,29 +295,6 @@ function getIcon(type) {
     dad: "💜"
   }[type];
 }
-clearBtn.addEventListener('click', function () {
-  if (confirm("Delete ALL events and activities?")) {
-
-
-    localStorage.removeItem('events');
-    localStorage.removeItem('activitiesByDate');
-
-
-    calendar.removeAllEvents();
-
-  
-    activitiesByDate = {};
-    selectedDate = null;
-
-    document.getElementById("selectedDate").innerText = "Selected Date: None";
-
-  
-    ["kidList", "momList", "dadList"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = "";
-    });
-  }
-});
 
 </script>
 
