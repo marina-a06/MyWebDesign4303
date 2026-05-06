@@ -180,18 +180,21 @@ li {
 
 .app {
   display: flex;
+  align-items: flex-start;
   gap: 20px;
 }
 
 .sidebar {
-  width: 300px;
+  width: 240px;
+  flex-shrink: 0;
   background: #f4f8ff;
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
 }
 
 .main {
   flex: 1;
+  min-width: 0;
 }
 
 .activity-tracker.kid { border-left: 5px solid #4CAF50; }
