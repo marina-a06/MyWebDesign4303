@@ -24,57 +24,52 @@
 </nav>
 <div class="container">
   <div class="app">
-  </div>
-</div>
 
+  
     <div class="sidebar">
       <button id="clearEvents">Clear Events</button>
       <h3 id="selectedDate">Selected Date: None</h3>
 
-<section class="activity-tracker kid">
-  <h2>⭐ Joseph Tracker</h2>
-  <div class="tracker-input">
-    <input type="text" id="kidInput" placeholder="Kid activity">
-    <button onclick="addActivity('kid')">Add</button>
-  </div>
-  <ul id="kidList"></ul>
-</section>
+      <section class="activity-tracker kid">
+        <h2>⭐ Joseph Tracker</h2>
+        <div class="tracker-input">
+          <input type="text" id="kidInput" placeholder="Kid activity">
+          <button onclick="addActivity('kid')">Add</button>
+        </div>
+        <ul id="kidList"></ul>
+      </section>
 
-<section class="activity-tracker mom">
-  <h2>💙 Mom Tracker</h2>
-  <div class="tracker-input">
-    <input type="text" id="momInput" placeholder="Mom task">
-    <button onclick="addActivity('mom')">Add</button>
-  </div>
-  <ul id="momList"></ul>
-</section>
+      <section class="activity-tracker mom">
+        <h2>💙 Mom Tracker</h2>
+        <div class="tracker-input">
+          <input type="text" id="momInput" placeholder="Mom task">
+          <button onclick="addActivity('mom')">Add</button>
+        </div>
+        <ul id="momList"></ul>
+      </section>
 
-<section class="activity-tracker dad">
-  <h2>💜 Dad Tracker</h2>
-  <div class="tracker-input">
-    <input type="text" id="dadInput" placeholder="Dad task">
-    <button onclick="addActivity('dad')">Add</button>
-  </div>
-  <ul id="dadList"></ul>
-</section>
-  </div>
-
-  <ul id="activityList"></ul>
-</section>
+      <section class="activity-tracker dad">
+        <h2>💜 Dad Tracker</h2>
+        <div class="tracker-input">
+          <input type="text" id="dadInput" placeholder="Dad task">
+          <button onclick="addActivity('dad')">Add</button>
+        </div>
+        <ul id="dadList"></ul>
+      </section>
     </div>
 
+  
     <div class="main">
-
       <div class="header">
         <h2>Family Calendar</h2>
       </div>
 
-      
       <div id="calendar"></div>
-
     </div>
 
   </div>
+</div>
+
   
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
