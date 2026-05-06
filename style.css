@@ -148,16 +148,6 @@ li {
   font-size: 12px;
 }
 
-
-
-
-.activity-tracker {
-  margin-top: 30px;
-  padding: 20px;
-  background: #f4f8ff;
-  border-radius: 10px;
-}
-
 .tracker-input {
   display: flex;
   gap: 10px;
@@ -202,6 +192,17 @@ li {
 
 .main {
   flex: 1;
+}
+
+.activity-tracker.kid { border-left: 5px solid #4CAF50; }
+.activity-tracker.mom { border-left: 5px solid #2196F3; }
+.activity-tracker.dad { border-left: 5px solid #9C27B0; }
+
+.activity-tracker {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {

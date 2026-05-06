@@ -28,12 +28,33 @@
     <div class="sidebar">
       <button id="clearEvents">Clear Events</button>
       <h3 id="selectedDate">Selected Date: None</h3>
-      <section class="activity-tracker">
-  <h2>⭐ Kid Activity Tracker</h2>
 
+<section class="activity-tracker kid">
+  <h2>⭐ Joseph Tracker</h2>
   <div class="tracker-input">
-    <input type="text" id="activityInput" placeholder="Add activity (e.g., Read 20 mins)">
-    <button onclick="addActivity()">Add</button>
+    <input type="text" id="kidInput" placeholder="Kid activity">
+    <button onclick="addActivity('kid')">Add</button>
+  </div>
+  <ul id="kidList"></ul>
+</section>
+
+<section class="activity-tracker mom">
+  <h2>💙 Mom Tracker</h2>
+  <div class="tracker-input">
+    <input type="text" id="momInput" placeholder="Mom task">
+    <button onclick="addActivity('mom')">Add</button>
+  </div>
+  <ul id="momList"></ul>
+</section>
+
+<section class="activity-tracker dad">
+  <h2>💜 Dad Tracker</h2>
+  <div class="tracker-input">
+    <input type="text" id="dadInput" placeholder="Dad task">
+    <button onclick="addActivity('dad')">Add</button>
+  </div>
+  <ul id="dadList"></ul>
+</section>
   </div>
 
   <ul id="activityList"></ul>
@@ -112,7 +133,12 @@ document.addEventListener('DOMContentLoaded', function () {
     Object.keys(data).forEach(date => {
       data[date].forEach(activity => {
         events.push({
-          title: "⭐ " + activity.text,
+          title: getIcon(activity.type) + " " + activity.text,
+backgroundColor: {
+  kid: "#4CAF50",
+  mom: "#2196F3",
+  dad: "#9C27B0"
+}[activity.type],
           start: date,
           allDay: true,
           backgroundColor: "#4CAF50"
@@ -138,61 +164,82 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   
-  window.addActivity = function() {
-    if (!selectedDate) {
-      alert("Please select a date first!");
-      return;
-    }
+ window.addActivity = function(type) {
+  if (!selectedDate) {
+    alert("Please select a date first!");
+    return;
+  }
 
-    const input = document.getElementById("activityInput");
-    const text = input.value.trim();
+  const inputMap = {
+    kid: "kidInput",
+    mom: "momInput",
+    dad: "dadInput"
+  };
 
-    if (!text) return;
+  const input = document.getElementById(inputMap[type]);
+  const text = input.value.trim();
 
-    if (!activitiesByDate[selectedDate]) {
-      activitiesByDate[selectedDate] = [];
-    }
+  if (!text) return;
 
-    activitiesByDate[selectedDate].push({
-      text: text,
-      done: false
-    });
+  if (!activitiesByDate[selectedDate]) {
+    activitiesByDate[selectedDate] = [];
+  }
 
-    localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
+  const activity = {
+    text: text,
+    done: false,
+    type: type
+  };
 
-   
-    calendar.addEvent({
-      title: "⭐ " + text,
-      start: selectedDate,
-      allDay: true,
-      backgroundColor: "#4CAF50"
-    });
+  activitiesByDate[selectedDate].push(activity);
 
-    input.value = "";
-    renderActivities();
+  localStorage.setItem("activitiesByDate", JSON.stringify(activitiesByDate));
+
+  // 🎨 color map
+  const colorMap = {
+    kid: "#4CAF50",
+    mom: "#2196F3",
+    dad: "#9C27B0"
+  };
+
+  calendar.addEvent({
+    title: getIcon(type) + " " + text,
+    start: selectedDate,
+    allDay: true,
+    backgroundColor: colorMap[type]
+  });
+
+  input.value = "";
+  renderActivities();
   };
 
   
   function renderActivities() {
-    const list = document.getElementById("activityList");
-    list.innerHTML = "";
+  const lists = {
+    kid: document.getElementById("kidList"),
+    mom: document.getElementById("momList"),
+    dad: document.getElementById("dadList")
+  };
 
-    if (!selectedDate || !activitiesByDate[selectedDate]) return;
+  // clear all lists
+  Object.values(lists).forEach(list => list.innerHTML = "");
 
-    activitiesByDate[selectedDate].forEach((activity, index) => {
-      const li = document.createElement("li");
+  if (!selectedDate || !activitiesByDate[selectedDate]) return;
 
-      li.innerHTML = `
-        <label>
-          <input type="checkbox" ${activity.done ? "checked" : ""}
-            onchange="toggleActivity(${index})">
-          ${activity.text}
-        </label>
-        <button onclick="deleteActivity(${index})">❌</button>
-      `;
+  activitiesByDate[selectedDate].forEach((activity, index) => {
+    const li = document.createElement("li");
 
-      list.appendChild(li);
-    });
+    li.innerHTML = `
+      <label>
+        <input type="checkbox" ${activity.done ? "checked" : ""}
+          onchange="toggleActivity(${index})">
+        ${activity.text}
+      </label>
+      <button onclick="deleteActivity(${index})">❌</button>
+    `;
+
+    lists[activity.type].appendChild(li);
+  });
   }
 
  
@@ -223,6 +270,14 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
 });
+
+function getIcon(type) {
+  return {
+    kid: "⭐",
+    mom: "💙",
+    dad: "💜"
+  }[type];
+}
 </script>
 
 
