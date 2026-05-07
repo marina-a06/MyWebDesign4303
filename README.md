@@ -8,7 +8,8 @@ This web app will help busy parents manage everything in one place.
 
 * Family Calendar
 * To-Do Lists
-* Meal Planner + Grocery list generator
+* Meal Planner
+* Grocery List
 * Kid Activity Tracker
 
 
@@ -32,3 +33,5 @@ You can view the live version of the project here:
 [Click here to view the Mom Life Command Center](https://marina-a06.github.io/MyWebDesign4303/)
 
 ## What changed from Project 01 to Project 02?
+In Project 01 the home page, calendar page, to do list and meal planner were all created and you could navigate through all the pages without broken links.  The layout was simple and the main page had an added feature to the buttons when you hover.
+In Project 02, I used the feedback from my peers to update the layout to be more visual appealing to the audience.  I added addition features to the calendar page and the meal planning page.  On the calendar page, you now have a tracker for kids, mom and dad that link to the calendar and are color cordinated to the individual.  On the meal planner page, you now have a grocery list next to the week.  You can add and delete grocery items on this page to match your weeks meal plans.
