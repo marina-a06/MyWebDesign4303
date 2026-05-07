@@ -318,6 +318,14 @@ li {
     justify-content: space-around;
   }
 
+  .meal-layout {
+    flex-direction: column;
+  }
+
+.app {
+  flex-direction: column;
+}
+
   .container {
     margin: 10px;
   }
