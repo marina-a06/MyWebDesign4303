@@ -1,7 +1,7 @@
-# Mom Command Center Reflection
+# Mom Life Command Center Reflection
 
 ## Decisions
-Building my “Mom Command Center” page was a much more involved process than I expected. It wasn’t just about making a page look organized, it was about deciding how information should actually flow in a way that would be useful in real life. Throughout the project, I had to constantly balance design, functionality, and simplicity.
+Building my “Mom Life Command Center” page was a much more involved process than I expected. It wasn’t just about making a page look organized, it was about deciding how information should actually flow in a way that would be useful in real life. Throughout the project, I had to constantly balance design, functionality, and simplicity.
 
 One of the most important decisions I made was how to structure the page layout. Early on, I tried to fit everything into one large container with multiple sections stacked vertically, but it quickly felt cluttered and hard to navigate. I decided to break the page into clear sections like the sidebar, calendar area, and activity tracker. This made the interface easier to understand and helped me think more like a user instead of just a developer. I also chose to use a consistent “card” style for key components so the design would feel unified rather than scattered.
 
